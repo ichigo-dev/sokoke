@@ -1,0 +1,12 @@
+[package]
+name = "sokoke"
+version = "0.0.1"
+edition = "2021"
+authors = ["ichigo-dev <dev.honda.ichigo@gmail.com>"]
+description = "Web application framework"
+license = "MIT"
+documentation = "https://docs.rs/sokoke"
+repository = "https://github.com/ichigo-dev/sokoke"
+
+
+[dependencies]

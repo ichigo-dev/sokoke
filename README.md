@@ -1,2 +1,3 @@
 # sokoke
-Web application framework for Rust
+
+Web application framework for Rust.
