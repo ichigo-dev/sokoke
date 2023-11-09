@@ -1,6 +1,6 @@
 [package]
 name = "sokoke"
-version = "0.0.1"
+version = "0.0.2"
 edition = "2021"
 authors = ["ichigo-dev <dev.honda.ichigo@gmail.com>"]
 description = "Web application framework"
@@ -10,3 +10,8 @@ repository = "https://github.com/ichigo-dev/sokoke"
 
 
 [dependencies]
+tokio = { version = "1.33.0", features = [
+    "rt-multi-thread",
+    "time",
+    "net"
+] }
