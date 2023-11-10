@@ -81,7 +81,18 @@ impl App
     {
         loop
         {
-            let (_stream, _remote_addr) = tcp_listener.accept().await.unwrap();
+            // Accepts a new connection.
+            let (_socket, _addr) = match tcp_listener.accept().await
+            {
+                Ok(ok) => ok,
+                Err(err) =>
+                {
+                    println!("Socket Error: {}", err);
+                    continue;
+                }
+            };
+
+            tokio::spawn(async {});
         }
     }
 }
