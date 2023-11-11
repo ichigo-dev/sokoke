@@ -9,15 +9,29 @@
 /// ## Usage
 ///
 /// ```rust
-/// use sokoke::App;
+/// use sokoke::{ App, Router, Body, Request, Response } };
+///
+/// async fn handler( req: Request<Body> ) -> Response<Body>
+/// {
+///    Response::new(Body::from("Hello World!"))
+/// }
 ///
 /// fn main()
 /// {
+///    let router = Router::new()
+///        .add(Route::get("/", handler));
+///
 ///    let app = App::new();
 ///    app.run();
 /// }
 /// ```
 //------------------------------------------------------------------------------
+
+mod router;
+
+pub use router::{ Router, Route };
+
+pub use hyper::{ Body, Request, Response };
 
 use std::env;
 
@@ -107,11 +121,22 @@ mod tests
     use super::*;
 
     //--------------------------------------------------------------------------
+    /// Test handler.
+    //--------------------------------------------------------------------------
+    async fn test_handler( req: Request<Body> ) -> Response<Body>
+    {
+        Response::new(Body::from("Hello World!"))
+    }
+
+    //--------------------------------------------------------------------------
     /// Tests the application.
     //--------------------------------------------------------------------------
     #[test]
     fn test_app()
     {
+        let router = Router::new()
+            .add(Route::get("/", test_handler));
+
         let app = App::new();
         app.run();
     }
